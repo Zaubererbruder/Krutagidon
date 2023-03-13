@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using Assets.Scripts;
-using Assets.Scripts.Core;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 

@@ -1,5 +1,4 @@
 
-using Assets.CardGameBase;
 using System.Collections.Generic;
 
 public class KrutagidonGame : Game<KrutagidonPlayer>
