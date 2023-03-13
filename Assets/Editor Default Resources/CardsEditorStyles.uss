@@ -1,0 +1,36 @@
+.horizontal-container
+{
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+}
+
+.label-element
+{
+	width: 80%;
+}
+
+.integer-element
+{
+	
+}
+
+.card-integer
+{
+	font-size: 20px;
+	min-width: 20px;
+	flex-direction: column;
+}
+
+.label-card-integer
+{
+	
+}
+
+EnumField
+{
+	font-size: 20px;
+	min-width: 20%;
+	flex-direction: column;
+}

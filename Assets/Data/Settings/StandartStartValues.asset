@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96d5d7c82be7c94f9aa53933b8145e3, type: 3}
+  m_Name: StandartStartValues
+  m_EditorClassIdentifier: 
+  _startCards:
+  - {fileID: 11400000, guid: a646ae2d1ffdd6c4ea0c0ff2d023a14f, type: 2}
+  - {fileID: 11400000, guid: ac750b4b82856ff4db048d04481bfed1, type: 2}
+  - {fileID: 11400000, guid: b3cd4e45313e24c42a5cc43fdb98ba69, type: 2}
+  _startCardsCounts: 020000000700000001000000

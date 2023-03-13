@@ -1,0 +1,17 @@
+{
+    "name": "TestScene",
+    "rootNamespace": "",
+    "references": [
+        "GUID:54103214ac31fe143a3612f649628019",
+        "GUID:18bd332b1a440804da168bb6db7b079f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
