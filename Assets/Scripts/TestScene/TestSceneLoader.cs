@@ -5,29 +5,31 @@ using UnityEngine;
 
 public class TestSceneLoader : MonoBehaviour
 {
-    public List<KrutagidonPlayer> Players = new List<KrutagidonPlayer>();
-    public KrutagidonGame KrutagidonGame;
-    [SerializeField] public PlayerTestBeh Player1Beh;
-    [SerializeField] public PlayerTestBeh Player2Beh;
+    public List<Player> Players = new List<Player>();
+    public Game Game;
+    [SerializeField] public PlayerView Player1Beh;
+    [SerializeField] public PlayerView Player2Beh;
     [SerializeField] public TurnBeh TurnBeh;
+    [SerializeField] public UIManager UIManager;
 
     private void Awake()
     {
-        KrutagidonPlayer player1 = new KrutagidonPlayer("Player 1");
-        KrutagidonPlayer player2 = new KrutagidonPlayer("Player 2");
+        Player player1 = new Player("Player 1");
+        Player player2 = new Player("Player 2");
         Players.Add(player1);
         Players.Add(player2);
-        KrutagidonGame = new KrutagidonGame(Players);
-        KrutagidonGame.Init();
+        Game = new Game(Players);
+        Game.Init();
 
         Player1Beh.Init(player1);
         Player2Beh.Init(player2);
 
-        TurnBeh.Init(KrutagidonGame.TurnManager as TurnManager<KrutagidonPlayer>);
+        TurnBeh.Init(Game.TurnManager as TurnManager);
+        UIManager.Init(Game.GameBoard);
     }
 
     private void Start()
     {
-        KrutagidonGame.Start();
+        Game.Start();
     }
 }

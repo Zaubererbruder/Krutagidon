@@ -10,10 +10,10 @@ namespace Assets.Scripts.TestScene
 {
     public class TurnBeh : MonoBehaviour
     {
-        private TurnManager<KrutagidonPlayer> _turnManager;
+        private TurnManager _turnManager;
         public Text _textFieldCurrentPlayer;
 
-        public void Init(TurnManager<KrutagidonPlayer> turnManager)
+        public void Init(TurnManager turnManager)
         {
             _turnManager = turnManager;
             UpdateCurrentPlayer();

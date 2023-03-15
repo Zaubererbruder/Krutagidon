@@ -16,15 +16,18 @@ public static class KrutagidonCards
 
     private static void InitDefinitions()
     {
-        KrutagidonCardDefinition fizzleCard = new KrutagidonCardDefinition("Fizzle", 0, 0, 0, 0);
+        CardDefinition fizzleCard = new CardDefinition("Fizzle", 0, 0);
         CardDefinitions.Add(0, fizzleCard);
 
-        KrutagidonCardDefinition glyphCard = new KrutagidonCardDefinition("Glyph", 0, 0, 1, 0);
+        CardDefinition glyphCard = new CardDefinition("Glyph", 0, 0);
+        glyphCard.AddActionOnPlay(new PowerAction(1));
         CardDefinitions.Add(1, glyphCard);
 
-        KrutagidonCardDefinition wandCard = new KrutagidonCardDefinition("Wand", 0, 0, 1, 1);
+        CardDefinition wandCard = new CardDefinition("Wand", 0, 0);
+        wandCard.AddActionOnPlay(new PowerAction(1));
+        //wandCard.Actions.Add(new DamageAction(1));
+        //wandCard.NeedTarget = true;
         CardDefinitions.Add(2, wandCard);
-        wandCard.AddDamageAction(1);
     }
 
     public static CardDefinition GetCardDefinition(int id)

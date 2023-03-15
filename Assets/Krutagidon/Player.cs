@@ -1,24 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
-public class KrutagidonPlayer : Player
+public class Player
 {
+    private Deck _deck = new Deck();
+    private ObservableCollection<Card> _hand = new ObservableCollection<Card>();
+    private ObservableCollection<Card> _discard = new ObservableCollection<Card>();
+    private GameBoard _gameBoard;
 
-    public KrutagidonPlayer(string name) : base(name)
+    public Player(string name)
     {
-        
+        Name = name;
     }
 
     public event Action HealthChanged;
+    public event Action PowerChanged;
 
-    public int Health => GetStat(0);
+    public string Name { get; private set; }
+    public int Health { get; private set; }
+    public int Power { get; private set; }
 
-    public override void Init()
+    public Deck Deck => _deck;
+    public ObservableCollection<Card> Hand => _hand;
+    public ObservableCollection<Card> Discard => _discard;
+
+    public void Init()
     {
-        _stats = new List<Stat>();
-        _stats.Add(
-            new Stat(KrutagidonStats.HealthStatType, 20)
-            );
+        Health = 20;
         HealthChanged?.Invoke();
 
         List<Card> cardsList = new List<Card>();
@@ -67,15 +76,21 @@ public class KrutagidonPlayer : Player
         return card;
     }
 
-    public override void Start()
+    public void Start()
     {
         TakeCardFromDeck(5);
     }
 
     public void TakeDamage(int damage)
     {
-        _stats[0].ChangeValue(-damage);
+        Health -= damage;
         HealthChanged?.Invoke();
+    }
+
+    public void RaisePower(int power)
+    {
+        Power += power;
+        PowerChanged?.Invoke();
     }
 
     public void TakeCardFromDeck(int count)
@@ -86,21 +101,13 @@ public class KrutagidonPlayer : Player
         }
     }
 
-    public override void PlayCard(Card card, ITarget target)
+    public void PlayCard(Card card)
     {
         if(!_hand.Contains(card))
         {
             throw new InvalidOperationException("You cannot play a card not in your hand");
         }
 
-        if(card.CardDefinition.NeedTarget && target == null)
-        {
-            throw new InvalidOperationException("This card requires a target");
-        }
-
         _hand.Remove(card);
-        _playedCards.Add(card);
-
-        card.Play(this, target);
     }
 }

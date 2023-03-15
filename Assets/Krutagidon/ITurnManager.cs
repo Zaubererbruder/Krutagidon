@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public interface ITurnManager<TPlayer> where TPlayer:Player
+public interface ITurnManager
 {
     public event Action TurnChanged;
     
-    public TPlayer CurrentPlayer { get; }
+    public Player CurrentPlayer { get; }
     
     public void NextTurn();
 
-    public void Init(List<TPlayer> players);
+    public void Init(List<Player> players);
 }

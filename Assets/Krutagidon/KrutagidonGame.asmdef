@@ -1,9 +1,7 @@
 {
     "name": "KrutagidonGame",
     "rootNamespace": "",
-    "references": [
-        "GUID:18bd332b1a440804da168bb6db7b079f"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

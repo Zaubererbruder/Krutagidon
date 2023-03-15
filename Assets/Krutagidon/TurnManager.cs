@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class TurnManager<TPlayer> : ITurnManager<TPlayer> where TPlayer : Player
+public class TurnManager : ITurnManager
 {
-    private List<TPlayer> _players = new List<TPlayer>();
+    private List<Player> _players = new List<Player>();
     private int _currentIndex;
 
     public TurnManager()
@@ -13,7 +13,7 @@ public class TurnManager<TPlayer> : ITurnManager<TPlayer> where TPlayer : Player
 
     public event Action TurnChanged;
 
-    public TPlayer CurrentPlayer => _players[_currentIndex];
+    public Player CurrentPlayer => _players[_currentIndex];
 
     public void NextTurn()
     {
@@ -22,12 +22,12 @@ public class TurnManager<TPlayer> : ITurnManager<TPlayer> where TPlayer : Player
         TurnChanged?.Invoke();
     }
 
-    public void Init(List<TPlayer> players)
+    public void Init(List<Player> players)
     {
         Reset(players, 0);
     }
 
-    public void Reset(List<TPlayer> players, int startIndex = 0)
+    public void Reset(List<Player> players, int startIndex = 0)
     {
         _players = players;
         _currentIndex = startIndex;
