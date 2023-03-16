@@ -9,7 +9,6 @@ public class TestSceneLoader : MonoBehaviour
     public Game Game;
     [SerializeField] public PlayerView Player1Beh;
     [SerializeField] public PlayerView Player2Beh;
-    [SerializeField] public TurnBeh TurnBeh;
     [SerializeField] public UIManager UIManager;
 
     private void Awake()
@@ -24,7 +23,6 @@ public class TestSceneLoader : MonoBehaviour
         Player1Beh.Init(player1);
         Player2Beh.Init(player2);
 
-        TurnBeh.Init(Game.TurnManager as TurnManager);
         UIManager.Init(Game.GameBoard);
     }
 

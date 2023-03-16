@@ -32,7 +32,7 @@ namespace Assets.Scripts.TestScene
 
         public void NextTurn()
         {
-            _turnManager.NextTurn();
+            _turnManager.EndTurn();
         }
     }
 }

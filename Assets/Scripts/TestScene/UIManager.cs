@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.TestScene
 {
@@ -14,10 +15,13 @@ namespace Assets.Scripts.TestScene
         private GameBoard _gameBoard;
         private UIInputType _uiInputType = UIInputType.Default;
         private CardView _selectedCard;
+        public Text _textFieldCurrentPlayer;
 
         public void Init(GameBoard gameBoard)
         {
             _gameBoard = gameBoard;
+            UpdateCurrentPlayer();
+            _gameBoard.TurnChanged += UpdateCurrentPlayer;
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -78,6 +82,21 @@ namespace Assets.Scripts.TestScene
                 action.Execute(actionData);
                 yield return null;
             }
+        }
+
+        private void UpdateCurrentPlayer()
+        {
+            _textFieldCurrentPlayer.text = _gameBoard.CurrentPlayer.Name;
+        }
+
+        public void NextTurn()
+        {
+            _gameBoard.EndTurn();
+        }
+
+        private void OnDestroy()
+        {
+            _gameBoard.TurnChanged -= UpdateCurrentPlayer;
         }
     }
 

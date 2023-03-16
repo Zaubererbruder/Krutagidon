@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 public class TurnManager : ITurnManager
 {
-    private List<Player> _players = new List<Player>();
+    private List<Player> _players;
     private int _currentIndex;
 
     public TurnManager()
     {
-
+        _players = new List<Player>();
+        _currentIndex = 0;
     }
 
     public event Action TurnChanged;
 
     public Player CurrentPlayer => _players[_currentIndex];
 
-    public void NextTurn()
+    public void EndTurn()
     {
         _currentIndex = (_currentIndex + 1) % _players.Count;
-        //CurrentPlayer = _players[_currentIndex];
         TurnChanged?.Invoke();
     }
 

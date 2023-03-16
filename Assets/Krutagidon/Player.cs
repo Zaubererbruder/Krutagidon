@@ -78,7 +78,7 @@ public class Player
 
     public void Start()
     {
-        TakeCardFromDeck(5);
+        GetCardsFromDeck(5);
     }
 
     public void TakeDamage(int damage)
@@ -87,16 +87,38 @@ public class Player
         HealthChanged?.Invoke();
     }
 
+    public void ResetPower()
+    {
+        Power = 0;
+        PowerChanged?.Invoke();
+    }
+
     public void RaisePower(int power)
     {
         Power += power;
         PowerChanged?.Invoke();
     }
 
-    public void TakeCardFromDeck(int count)
+    public void DiscardHand()
+    {
+        List<Card> tempList = new List<Card>(_hand);
+        _hand.Clear();
+        foreach (Card card in tempList)
+        {
+            _discard.Add(card);
+        }
+    }
+
+    public void GetCardsFromDeck(int count)
     {
         for (int i = 0; i < count; i++)
         {
+            if(_deck.Count == 0)
+            {
+                List<Card> tempList = new List<Card>(_discard);
+                _discard.Clear();
+                _deck.AddCardsToDeck(tempList, true);
+            }
             _hand.Add(_deck.DrawCard());
         }
     }

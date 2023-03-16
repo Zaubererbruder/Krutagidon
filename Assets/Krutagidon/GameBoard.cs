@@ -10,7 +10,7 @@ public class GameBoard
     private List<Player> _players = new List<Player>();
     private ITurnManager _turnManager;
     private ActionsPool _actionsPool;
-    private List<Card> _playedCards;
+    private CardsOnPlay _cardsOnPlay;
     //MainDeck
     //Shop
 
@@ -19,20 +19,36 @@ public class GameBoard
         _players = players;
         _turnManager = turnManager;
         _actionsPool = new ActionsPool();
-        _playedCards = new List<Card>();
+        _cardsOnPlay = new CardsOnPlay();
     }
 
     public ActionsPool ActionsPool => _actionsPool;
+    public Player CurrentPlayer => _turnManager.CurrentPlayer;
+
+    public event Action TurnChanged;
+
+    public void EndTurn()
+    {
+        _cardsOnPlay.DiscardCards();
+        CurrentPlayer.DiscardHand();
+        CurrentPlayer.ResetPower();
+        CurrentPlayer.GetCardsFromDeck(5);
+        _turnManager.EndTurn();
+        TurnChanged?.Invoke();
+    }
 
     public void PlayCard(Card card)
     {
         ActionsPool.Add(card.CardActionsOnPlay.ToArray());
         card.PlayerOwner.PlayCard(card);
-        _playedCards.Add(card);
+        _cardsOnPlay.PlayCard(card);
     }
 
     public bool CanPlayCard(Card card)
     {
+        if (CurrentPlayer != card.PlayerOwner)
+            return false;
+
         return true;
     }
 }

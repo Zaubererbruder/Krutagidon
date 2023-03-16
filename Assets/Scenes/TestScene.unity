@@ -250,7 +250,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207898811}
-  - component: {fileID: 207898812}
   m_Layer: 5
   m_Name: TurnBeh
   m_TagString: Untagged
@@ -281,19 +280,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0, y: 0.5}
---- !u!114 &207898812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207898810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 326326038dd05594da96470fc9bac310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textFieldCurrentPlayer: {fileID: 720099115}
 --- !u!1 &349139943
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,8 +440,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 207898812}
-        m_TargetAssemblyTypeName: Assets.Scripts.TestScene.TurnBeh, TestScene
+      - m_Target: {fileID: 1481374884}
+        m_TargetAssemblyTypeName: Assets.Scripts.TestScene.UIManager, TestScene
         m_MethodName: NextTurn
         m_Mode: 1
         m_Arguments:
@@ -535,7 +521,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1Beh: {fileID: 1584360936}
   Player2Beh: {fileID: 1124216243}
-  TurnBeh: {fileID: 207898812}
   UIManager: {fileID: 1481374884}
 --- !u!4 &450255335
 Transform:
@@ -832,6 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5b439cc33b57748a9bc5c0f6e6f72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _textFieldCurrentPlayer: {fileID: 720099115}
 --- !u!1001 &1522932160
 PrefabInstance:
   m_ObjectHideFlags: 0

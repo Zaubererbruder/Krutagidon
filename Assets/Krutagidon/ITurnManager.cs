@@ -11,7 +11,7 @@ public interface ITurnManager
     
     public Player CurrentPlayer { get; }
     
-    public void NextTurn();
+    public void EndTurn();
 
     public void Init(List<Player> players);
 }
