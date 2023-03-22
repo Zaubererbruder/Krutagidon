@@ -32,6 +32,8 @@ public class CardsOnPlay
             //if Постоянка
             card.PlayerOwner.Discard.Add(card);
             _cardsList.RemoveAt(i);
+            CollectionChanged?.Invoke(this,
+                new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, card));
         }
     }
 }

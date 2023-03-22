@@ -24,6 +24,7 @@ public class GameBoard
 
     public ActionsPool ActionsPool => _actionsPool;
     public Player CurrentPlayer => _turnManager.CurrentPlayer;
+    public CardsOnPlay CardsOnPlay => _cardsOnPlay;
 
     public event Action TurnChanged;
 
@@ -40,7 +41,7 @@ public class GameBoard
     public void PlayCard(Card card)
     {
         ActionsPool.Add(card.CardActionsOnPlay.ToArray());
-        card.PlayerOwner.PlayCard(card);
+        CurrentPlayer.PlayCard(card);
         _cardsOnPlay.PlayCard(card);
     }
 

@@ -102,7 +102,10 @@ public class Player
     public void DiscardHand()
     {
         List<Card> tempList = new List<Card>(_hand);
-        _hand.Clear();
+        for (;_hand.Count>0;)
+        {
+            _hand.RemoveAt(0);
+        }
         foreach (Card card in tempList)
         {
             _discard.Add(card);

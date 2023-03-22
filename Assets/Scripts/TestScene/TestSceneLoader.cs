@@ -10,6 +10,7 @@ public class TestSceneLoader : MonoBehaviour
     [SerializeField] public PlayerView Player1Beh;
     [SerializeField] public PlayerView Player2Beh;
     [SerializeField] public UIManager UIManager;
+    [SerializeField] private PlayedCardsView _playedCardsView;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class TestSceneLoader : MonoBehaviour
         Player2Beh.Init(player2);
 
         UIManager.Init(Game.GameBoard);
+        _playedCardsView.Init(Game.GameBoard.CardsOnPlay);
     }
 
     private void Start()

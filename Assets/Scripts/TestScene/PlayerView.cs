@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class PlayerView : MonoBehaviour
 {
-    [SerializeField] private CardViewController _cardViewController;
+    [SerializeField] private PlayerCardViewController _playerCardViewController;
 
     private Player _player;
     public Text _textFieldDeckCount;
@@ -39,14 +41,29 @@ public class PlayerView : MonoBehaviour
         _player.PowerChanged += UpdatePower;
     }
 
-    private void Discard_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    private void Discard_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
         UpdateDiscard();
     }
 
-    private void Hand_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    private void Hand_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
-        UpdateHand();
+        CardView cardView = null;
+        switch (e.Action)
+        {
+            case NotifyCollectionChangedAction.Add:
+                cardView = _playerCardViewController.Create(e.NewItems[0] as Card);
+                CardsList.Add(cardView);
+                break;
+            case NotifyCollectionChangedAction.Remove:
+                cardView = _playerCardViewController.Remove(e.OldItems[0] as Card);
+                CardsList.Remove(cardView);
+                break;
+            default:
+                throw new NotImplementedException($"NotifyCollectionChangedEventArgs.Action {e.Action.ToString()} not implemented");
+        }
+        
+        //UpdateHand();
     }
 
     private void OnDestroy()
@@ -73,7 +90,7 @@ public class PlayerView : MonoBehaviour
 
         foreach (Card card in _player.Hand)
         {
-            CardView cardView = _cardViewController.Create(card);
+            CardView cardView = _playerCardViewController.Create(card);
             CardsList.Add(cardView);
         }
     }

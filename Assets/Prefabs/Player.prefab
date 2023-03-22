@@ -795,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b35ee2e4d54a514182925ab4bd20cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardViewController: {fileID: 5740155676426398751}
+  _playerCardViewController: {fileID: 5740155676426398751}
   _textFieldDeckCount: {fileID: 6144175765620555610}
   CardsList: []
   _textFieldDiscardCount: {fileID: 4236214474980102698}
