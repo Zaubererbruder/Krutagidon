@@ -1,4 +1,5 @@
 
+using Assets.Krutagidon;
 using System.Collections.Generic;
 
 public class Game
@@ -6,11 +7,13 @@ public class Game
     private List<Player> _players;
     private ITurnManager _turnManager;
     private GameBoard _gameBoard;
+    private StarterCardDistributor _starterCardDistributor;
 
     public Game(List<Player> players)
     {
         _players = players;
         KrutagidonCards.InitCards();
+        _starterCardDistributor = new StarterCardDistributor(_players);
         UseDefaultTurnManager();
         _gameBoard = new GameBoard(_players, _turnManager);
     }
@@ -34,7 +37,7 @@ public class Game
         {
             player.Init();
         }
-
+        _starterCardDistributor.Distribute();
         _turnManager.Init(_players);
     }
 

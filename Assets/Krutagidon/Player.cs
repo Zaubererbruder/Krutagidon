@@ -29,51 +29,6 @@ public class Player
     {
         Health = 20;
         HealthChanged?.Invoke();
-
-        List<Card> cardsList = new List<Card>();
-        cardsList.Add(
-            CreateCard(KrutagidonCards.FizzleCardDefinition) 
-            );
-        cardsList.Add(
-            CreateCard(KrutagidonCards.FizzleCardDefinition)
-            );
-        cardsList.Add(
-            CreateCard(KrutagidonCards.FizzleCardDefinition)
-            );
-
-
-        cardsList.Add(
-            CreateCard(KrutagidonCards.GlyphCardDefinition)
-            );
-        cardsList.Add(
-            CreateCard(KrutagidonCards.GlyphCardDefinition)
-            );
-        cardsList.Add(
-            CreateCard(KrutagidonCards.GlyphCardDefinition)
-            );
-        cardsList.Add(
-            CreateCard(KrutagidonCards.GlyphCardDefinition)
-            );
-        cardsList.Add(
-            CreateCard(KrutagidonCards.GlyphCardDefinition)
-            );
-        cardsList.Add(
-            CreateCard(KrutagidonCards.GlyphCardDefinition)
-            );
-
-
-        cardsList.Add(
-            CreateCard(KrutagidonCards.WandCardDefinition)
-            );
-
-        _deck.AddCardsToDeck(cardsList, true);
-    }
-
-    public Card CreateCard(CardDefinition definition)
-    {
-        Card card = new Card(definition);
-        card.ChangeOwner(this);
-        return card;
     }
 
     public void Start()

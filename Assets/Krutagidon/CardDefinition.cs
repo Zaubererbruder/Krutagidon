@@ -39,11 +39,6 @@ public class CardDefinition
         }
     }
 
-    public void AddActionOnAttack()
-    {
-        throw new NotImplementedException();
-    }
-
     public void AddActionOnDefense()
     {
         throw new NotImplementedException();

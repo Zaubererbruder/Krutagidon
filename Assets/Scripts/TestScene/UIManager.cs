@@ -39,49 +39,46 @@ namespace Assets.Scripts.TestScene
                     return;
                 }
 
-                if (_selectedCard.Card.CardDefinition.NeedTargetOnPlay)
-                {
-                    SwitchUIInputType(UIInputType.ChooseTarget);
-                }
-                else
-                {
-                    _gameBoard.PlayCard(_selectedCard.Card);
-                    //_gameBoard.ActionsPool.Add(_selectedCard.Card.CardActionsOnPlay.ToArray());
-                    StartCoroutine(_gameBoard.ActionsPool.Execute());
-                    //ActionData actionData = new ActionData(cardView.Card.Owner);
-                    //StartCoroutine(PlayCard(cardView.Card, actionData));
-                }
+                _gameBoard.PlayCard(_selectedCard.Card);
+                SwitchUIInputType(UIInputType.ResolvingActions);
+                StartCoroutine(PlayActions());
+
 
                 return;
             }
-            
-            if(_uiInputType == UIInputType.ChooseTarget)
-            {
-                PlayerView playerView;
-                if(eventData.rawPointerPress.TryGetComponent(out playerView))
-                {
-                    ActionData actionData 
-                        = new ActionData(_selectedCard.Card.PlayerOwner)
-                        .WithTarget(playerView.Player);
 
-                    StartCoroutine(PlayCard(_selectedCard.Card, actionData));
-                    _selectedCard = null;
-                    SwitchUIInputType(UIInputType.Default);
+            if(_uiInputType == UIInputType.ResolvingActions)
+            {
+                if(_gameBoard.ActionsPool.State == ActionsPoolState.WaitingTarget)
+                {
+                    PlayerView playerView;
+                    if (eventData.rawPointerPress.TryGetComponent(out playerView))
+                    {
+                        ActionData actionData
+                            = new ActionData(_selectedCard.Card.PlayerOwner)
+                            .WithTarget(playerView.Player);
+
+                        _gameBoard.ActionsPool.RequiredActionData = actionData;
+                    }
                 }
             }
         }
-        private void SwitchUIInputType(UIInputType uiInputType)
+
+        private IEnumerator PlayActions()
         {
-            _uiInputType = uiInputType;
+            yield return _gameBoard.ActionsPool.Execute();
+
+            if (_gameBoard.ActionsPool.State == ActionsPoolState.Completed)
+            {
+                SwitchUIInputType(UIInputType.Default);
+                yield break;
+            }
         }
 
-        private IEnumerator PlayCard(Card card, ActionData actionData)
+        private void SwitchUIInputType(UIInputType uiInputType)
         {
-            foreach (var action in card.CardDefinition.ActionsOnPlay)
-            {
-                action.Execute(actionData);
-                yield return null;
-            }
+            Debug.Log($"UIInputType switched from {_uiInputType} to {uiInputType}");
+            _uiInputType = uiInputType;
         }
 
         private void UpdateCurrentPlayer()
@@ -106,6 +103,7 @@ namespace Assets.Scripts.TestScene
         ChooseTarget,
         ChooseTargetEnemy,
         ChooseTargets,
-        ChooseEnemyTargets
+        ChooseEnemyTargets,
+        ResolvingActions
     }
 }

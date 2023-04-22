@@ -24,7 +24,8 @@ public static class KrutagidonCards
         CardDefinitions.Add(1, glyphCard);
 
         CardDefinition wandCard = new CardDefinition("Wand", 0, 0);
-        wandCard.AddActionOnPlay(new PowerAction(1));
+        wandCard.AddActionOnPlay(new DamageAction(1));
+        wandCard.AddActionOnPlay(new PowerAction(1));  
         //wandCard.Actions.Add(new DamageAction(1));
         //wandCard.NeedTarget = true;
         CardDefinitions.Add(2, wandCard);

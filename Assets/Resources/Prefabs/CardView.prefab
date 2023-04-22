@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1103352888444125282}
   - component: {fileID: 3194816477194303054}
   - component: {fileID: 3708724738863948291}
-  - component: {fileID: 3789019898522981303}
+  - component: {fileID: 6994260734407828782}
   m_Layer: 5
   m_Name: CardView
   m_TagString: Untagged
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3789019898522981303
+--- !u!114 &6994260734407828782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5939874265014519832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
+  m_Script: {fileID: 11500000, guid: 56265886e33caef4382676c9d8f54219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -115,9 +115,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.7276479, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9622642, g: 0.9449223, b: 0.52198297, a: 1}
+    m_PressedColor: {r: 1, g: 0.74483186, b: 0.24056602, a: 1}
+    m_SelectedColor: {r: 0.5613208, g: 1, b: 0.5622964, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

@@ -18,10 +18,23 @@ public class Card
     public List<ICardAction> CardActionsOnPlay { get; private set; }
     public CardDefinition CardDefinition { get; private set; }
     public Player PlayerOwner { get; private set; }
+    public CardState State { get;private set; }
 
     public void ChangeOwner(Player player)
     {
         PlayerOwner = player;
     }
+
+    public void SetState(CardState state)
+    {
+        State = state;
+    }
 }
 
+public enum CardState
+{
+    InDeck,
+    InHand,
+    InDiscard,
+    InGame
+}

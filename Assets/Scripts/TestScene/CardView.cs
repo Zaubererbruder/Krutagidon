@@ -28,32 +28,4 @@ public class CardView : MonoBehaviour
         _textField.text = _card.CardDefinition.Name;
 
     }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        //if (_card.CardDefinition.NeedTarget)
-        //{
-        //    StartCoroutine(ChooseTargetAndPlayCard());
-        //}
-        //else
-        //{
-        //    StartCoroutine(PlayCard(ActionData.WithoutTarget));
-        //}
-    }
-
-    private IEnumerator ChooseTargetAndPlayCard()
-    {
-        _image.color = Color.red;
-        yield return null;
-        _image.color = Color.white;
-    }
-
-    private IEnumerator PlayCard(ActionData actionData)
-    {
-        foreach (var action in _card.CardDefinition.ActionsOnPlay)
-        {
-            action.Execute(actionData);
-            yield return null;
-        }
-    }
 }
